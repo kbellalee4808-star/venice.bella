@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>베네치아 생활 백서 · 3박 4일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3A5C;--navy-deep:#142C46;--gold:#D4A94A;--gold-soft:#E6C879;
+  --ivory:#FAF7F2;--ivory-warm:#F3ECE0;--ink:#2A2A28;--line:rgba(27,58,92,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--ivory);color:var(--ink);word-break:keep-all;line-height:1.75;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom);}
+.wrap{max-width:520px;margin:0 auto;background:var(--ivory);min-height:100dvh;position:relative;box-shadow:0 0 60px rgba(0,0,0,.06);}
+
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--ivory);padding:62px 28px 52px;padding-top:calc(58px + env(safe-area-inset-top));position:relative;overflow:hidden;text-align:center;}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 10%,rgba(212,169,74,.18),transparent 45%),radial-gradient(circle at 10% 90%,rgba(212,169,74,.10),transparent 40%);}
+.hero-wave{position:absolute;bottom:-2px;left:0;width:100%;height:46px;display:block;}
+.hero-overline{position:relative;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:5px;text-transform:uppercase;color:var(--gold-soft);margin-bottom:16px;font-weight:600;}
+.hero h1{position:relative;font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1.2;}
+.hero h1 span{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:28px;color:var(--gold-soft);letter-spacing:1px;margin-top:6px;}
+.hero h1 span .num{font-family:'Noto Sans KR',sans-serif;font-style:normal;font-weight:700;letter-spacing:0;}
+.card-label .en .num{font-family:'Noto Sans KR',sans-serif;font-style:normal;font-weight:700;letter-spacing:0;}
+.hero-sub{position:relative;font-size:13.5px;color:rgba(250,247,242,.78);font-weight:300;margin-top:14px;letter-spacing:.5px;}
+.hero-badge{position:relative;display:inline-flex;align-items:center;gap:7px;margin-top:22px;padding:9px 18px;border:1px solid rgba(212,169,74,.5);border-radius:30px;font-size:12px;letter-spacing:.5px;color:var(--gold-soft);}
+
+.tabs{position:sticky;top:0;z-index:20;display:flex;background:var(--navy-deep);padding-top:env(safe-area-inset-top);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:1 0 auto;min-width:62px;min-height:54px;border:none;background:transparent;color:rgba(250,247,242,.55);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:.2px;transition:.25s;position:relative;padding:8px 6px;}
+.tab.active{color:var(--gold-soft);font-weight:700;}
+.tab.active::after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:44%;height:3px;background:var(--gold);border-radius:3px 3px 0 0;}
+
+.section{display:none;padding:34px 22px 60px;animation:fade .4s ease;}
+.section.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+.day-head{margin-bottom:24px;text-align:center;}
+.day-tag{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.day-title{font-size:25px;font-weight:900;color:var(--navy);letter-spacing:-.5px;margin-top:4px;}
+.day-desc{font-size:13px;color:#6b6b66;margin-top:8px;font-weight:300;}
+.divider{width:48px;height:2px;background:var(--gold);margin:14px auto 0;}
+
+.card{background:#fff;border-radius:18px;padding:22px 20px;margin-bottom:16px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(27,58,92,.05);}
+.card-label{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.card-icon{width:38px;height:38px;border-radius:11px;flex-shrink:0;background:linear-gradient(145deg,var(--navy),var(--navy-deep));display:flex;align-items:center;justify-content:center;font-size:18px;}
+.card-label h3{font-size:16px;font-weight:700;color:var(--navy);letter-spacing:-.3px;}
+.card-label .en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--gold);letter-spacing:1px;display:block;margin-top:1px;font-weight:600;}
+.card p{font-size:14px;color:#3d3d3a;line-height:1.78;}
+.card p+p{margin-top:10px;}
+.card strong{color:var(--navy);font-weight:700;}
+
+.wgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px;}
+.wbox{background:var(--ivory-warm);border-radius:12px;padding:14px 12px;text-align:center;}
+.wbox .v{font-size:21px;font-weight:900;color:var(--navy);line-height:1.1;}
+.wbox .k{font-size:11px;color:#7a766e;margin-top:4px;letter-spacing:.3px;}
+
+.list{list-style:none;margin-top:6px;}
+.list li{position:relative;padding-left:22px;font-size:14px;color:#3d3d3a;margin-bottom:10px;line-height:1.7;}
+.list li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;background:var(--gold);border-radius:50%;}
+.list li:last-child{margin-bottom:0;}
+.list li b{color:var(--navy);}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.chip{background:var(--ivory-warm);border:1px solid var(--line);border-radius:30px;padding:8px 14px;font-size:12.5px;color:var(--navy);font-weight:500;}
+
+.tline{margin-top:6px;position:relative;padding-left:8px;}
+.tstep{position:relative;padding-left:28px;padding-bottom:22px;border-left:2px solid var(--line);margin-left:6px;}
+.tstep:last-child{border-left-color:transparent;padding-bottom:0;}
+.tstep::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 2px var(--gold);}
+.tstep .time{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--gold);font-weight:600;letter-spacing:.5px;}
+.tstep .place{font-size:15px;font-weight:700;color:var(--navy);margin:1px 0 4px;}
+.tstep .note{font-size:13px;color:#5a5a55;line-height:1.7;}
+
+.callout{background:linear-gradient(135deg,rgba(212,169,74,.12),rgba(212,169,74,.04));border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 16px;margin-top:14px;}
+.callout .ct{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:5px;}
+.callout p{font-size:13.5px;color:var(--navy);line-height:1.7;}
+
+.linkblock+.linkblock{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);}
+.linkblock h4{font-size:15px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.linkblock .how{font-size:13px;color:#5a5a55;line-height:1.72;margin-bottom:12px;}
+.linkblock .how b{color:var(--navy);}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:52px;width:100%;background:linear-gradient(145deg,var(--gold),#c79a3c);color:#1B3A5C;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;text-decoration:none;border-radius:12px;letter-spacing:.2px;box-shadow:0 4px 14px rgba(212,169,74,.28);transition:transform .15s;}
+.btn:active{transform:scale(.98);}
+.btn.alt{background:linear-gradient(145deg,var(--navy),var(--navy-deep));color:var(--gold-soft);box-shadow:0 4px 14px rgba(27,58,92,.22);}
+.btnrow{display:flex;gap:10px;}
+.btnrow .btn{flex:1;min-width:0;}
+
+.train{background:var(--navy);border-radius:14px;padding:16px 18px;margin-top:14px;color:var(--ivory);}
+.train .tt{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--gold-soft);letter-spacing:.5px;margin-bottom:8px;}
+.train .route{display:flex;align-items:center;justify-content:center;gap:10px;font-size:13px;font-weight:500;margin:4px 0;}
+.train .route .ar{color:var(--gold);font-weight:700;}
+.train .meta{font-size:12px;color:rgba(250,247,242,.7);text-align:center;margin-top:6px;line-height:1.6;}
+
+.phrase{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line);}
+.phrase:last-child{border-bottom:none;}
+.phrase .pl{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.phrase .it{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--navy);font-weight:600;line-height:1.2;}
+.phrase .pr{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.3px;}
+.phrase .ko{font-size:12.5px;color:#7a766e;text-align:right;flex-shrink:0;}
+
+.foot{background:var(--navy-deep);color:rgba(250,247,242,.7);text-align:center;padding:34px 24px;padding-bottom:calc(34px + env(safe-area-inset-bottom));}
+.foot .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold-soft);line-height:1.6;margin-bottom:12px;}
+.foot .sig{font-size:12px;letter-spacing:2px;color:rgba(250,247,242,.55);}
+
+@media (max-width:520px){.hero h1{font-size:34px;}.hero h1 span{font-size:24px;}}
+@media (max-width:360px){.section{padding:30px 16px 50px;}.hero{padding:50px 20px 44px;}.hero h1{font-size:29px;}.wbox .v{font-size:18px;}.tab{font-size:12px;min-width:58px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-overline">Cruise Nomad's City Guide</div>
+    <h1>베네치아 생활 백서<span><span class="num">3박 4일</span> · La Serenissima</span></h1>
+    <p class="hero-sub">메스트레에 머물며, 매일 물의 도시로 출근하기</p>
+    <div class="hero-badge">🏨 Base · Best Western Plus Hotel Bologna (Mestre)</div>
+    <svg class="hero-wave" viewBox="0 0 520 46" preserveAspectRatio="none"><path d="M0,24 C130,46 200,4 280,18 C360,32 430,42 520,20 L520,46 L0,46 Z" fill="#FAF7F2"/></svg>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="before">여행 전</button>
+    <button class="tab" data-tab="d1">1일차</button>
+    <button class="tab" data-tab="d2">2일차</button>
+    <button class="tab" data-tab="d3">3일차</button>
+    <button class="tab" data-tab="d4">4일차</button>
+  </nav>
+
+  <!-- ============ 여행 전 ============ -->
+  <section class="section active" id="before">
+    <div class="day-head">
+      <div class="day-tag">Before You Go</div>
+      <div class="day-title">메스트레 베이스 완벽 정리</div>
+      <div class="day-desc">교통 · 7일권 · 입도세 · 예약 링크 · 날씨</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🚌</div><div><h3>메스트레에서 본섬 가는 법</h3><span class="en">Mestre → Venice</span></div></div>
+      <p>호텔이 <strong>메스트레역·트램 정류장 바로 앞</strong>이라 본섬 진입이 정말 쉬워요. 7일 교통패스가 있으니 <strong>버스·트램·바포레토·기차까지 전부 무제한</strong>으로 골라 타면 됩니다.</p>
+      <div class="train">
+        <div class="tt">🚌 버스·트램 루트 (벨라 메인)</div>
+        <div class="route"><span>Mestre</span><span class="ar">→</span><span>P.le Roma</span></div>
+        <div class="meta">트램 T1 또는 ACTV 버스 · 약 20분 · 본섬 입구(로마광장) 도착</div>
+      </div>
+      <div class="train" style="margin-top:10px;">
+        <div class="tt">🚄 기차 루트 (더 빠름)</div>
+        <div class="route"><span>Venezia Mestre</span><span class="ar">→</span><span>S. Lucia</span></div>
+        <div class="meta">약 10~12분 · 레지오날레(R/RV) · 7일권에 포함</div>
+      </div>
+      <ul class="list" style="margin-top:14px;">
+        <li><b>버스·트램</b> — 호텔 앞에서 피아잘레 로마(로마광장)행 탑승. 시간이 조금 더 걸려도 갈아탈 필요 없이 편해요.</li>
+        <li><b>기차</b> — 가장 빠른 옵션. 종이표면 각인이 필요하지만, 7일권 카드는 그냥 단말기에 태그.</li>
+        <li><b>막차 확인</b> — 야경 보고 돌아올 때 버스·기차 막차 시간만 체크하면 안심.</li>
+      </ul>
+      <div class="callout"><div class="ct">💛 메스트레 베이스의 장점</div><p>본섬 호텔보다 <strong>가격이 저렴</strong>하고, 무거운 짐을 끌고 다리를 오르내릴 필요가 없어요. 슈퍼·식당도 가까워 저녁을 편하게 해결할 수 있죠.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🎫</div><div><h3>7일 교통패스 = 무제한 자유</h3><span class="en">ACTV <span class="num">7</span>-Day Pass</span></div></div>
+      <p>벨라는 <strong>ACTV 7일권</strong> 사용 중! 카드 한 장으로 베네치아 교통망 전체를 무제한으로 탈 수 있어요. 특히 섬 호핑할 때 바포레토를 매번 끊을 필요가 없어 크게 이득.</p>
+      <ul class="list">
+        <li><b>버스·트램</b> — 메스트레·마르게라 본토 노선 전부.</li>
+        <li><b>바포레토(수상버스)</b> — 본섬·리도·라군 섬(무라노·부라노) 전 노선.</li>
+        <li><b>기차</b> — 베네치아市 구간 레지오날레(메스트레 ↔ 산타루치아).</li>
+        <li><b>피플무버</b> — 로마광장 ↔ 트론케토(주차장·터미널 방면).</li>
+      </ul>
+      <div class="callout"><div class="ct">⚠️ 패스 사용 주의</div><p>유효기간은 <strong>최초 태그 시점부터 시간 단위</strong>(7일권 = 168시간)로 계산돼요. 탈 때마다 단말기에 카드를 <strong>꼭 태그</strong>! <strong>공항 노선·알릴라구나·16/19번선은 미포함</strong>이라 별도 표가 필요합니다.</p></div>
+      <a class="btn alt" href="https://youtu.be/wM2WtUXC4AY" target="_blank" rel="noopener" style="margin-top:14px;">▶ ACTV 이용법 영상 보기</a>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🎟️</div><div><h3>주말 입도세, 벨라는 면제!</h3><span class="en">Access Fee <span class="num">2026</span></span></div></div>
+      <p>2026년 베네치아는 <strong>당일치기 방문객</strong>에게 본섬 입도세(Contributo di Accesso)를 받아요. 4~7월 성수기 중 <strong>주로 금·토·일 + 일부 공휴일 주간</strong>, 오전 8:30~오후 4:00에만 적용됩니다.</p>
+      <div class="wgrid">
+        <div class="wbox"><div class="v">€5</div><div class="k">4일 전 예약 시</div></div>
+        <div class="wbox"><div class="v">€10</div><div class="k">임박 예약 시</div></div>
+      </div>
+      <div class="callout"><div class="ct">💛 벨라는 안 내도 돼요</div><p>메스트레(Hotel Bologna)도 <strong>베네치아市 소속</strong>이라 숙박세를 내는 숙박객은 입도세 <strong>면제</strong>! 단 <strong>면제 등록 + 무료 QR 발급</strong>은 해두셔야 해요(도착일~출발일 자동 커버). 이미 등록(DAC)해두셨다면 QR만 폰에 챙기면 끝!</p></div>
+      <ul class="list" style="margin-top:14px;">
+        <li><b>지금이 적용 시기</b> — 5월은 매주 금·토·일(…22·23·24·29·30·31일)이 입도세 날. 이번 주말 켜져 있어요.</li>
+        <li><b>면제도 QR 필수</b> — 면제자라도 등록 안 하면 안 돼요. 공식 사이트 <b>cda.ve.it</b> → "Book your exemption" → 숙소 정보 입력 → QR 발급.</li>
+        <li><b>검문 대비</b> — 본섬 역사지구 입구·시내에서 확인할 수 있어요. <b>QR + 신분증</b>을 폰에 저장.</li>
+        <li><b>라군 섬은 제외</b> — 무라노·부라노·리도 등은 2026년 입도세 대상이 아니에요(3일차 섬 호핑은 무관).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🔖</div><div><h3>예약 & 바로가기</h3><span class="en">Quick Links</span></div></div>
+
+      <div class="linkblock">
+        <h4>🎟️ 입도세 (면제 등록·결제)</h4>
+        <p class="how">공식 사이트에서 면제자는 <b>"Book your exemption"</b> → 숙소 정보 입력 → 무료 QR 발급. 당일치기면 날짜 선택 후 결제하면 QR이 나와요. <b>cda.ve.it</b></p>
+        <a class="btn" href="https://cda.ve.it" target="_blank" rel="noopener">면제 등록 / 결제하기 →</a>
+      </div>
+
+      <div class="linkblock">
+        <h4>🚤 수상택시 (프라이빗)</h4>
+        <p class="how">출발·도착 터미널(공항·역·로마광장·호텔) 선택 → 인원·날짜·시간 → 결제 → 받은 <b>바우처를 기사에게 제시</b>. 최대 10인·캐리어 12개, <b>48시간 전 예약</b> 권장. (공식 컨소시엄 Motoscafi Venezia)</p>
+        <a class="btn" href="https://www.motoscafivenezia.com/en/" target="_blank" rel="noopener">수상택시 예약하기 →</a>
+      </div>
+
+      <div class="linkblock">
+        <h4>🚄 기차표 예약</h4>
+        <p class="how">출발역 <b>Venezia Mestre</b> · 도착역 입력 → 날짜·시간 → 예매. 시내 구간(메스트레↔산타루치아)은 7일권(통합권)이면 따로 안 사도 OK. 로마行 등 장거리는 고속열차로 예약하세요.</p>
+        <div class="btnrow">
+          <a class="btn" href="https://www.trenitalia.com" target="_blank" rel="noopener">Trenitalia →</a>
+          <a class="btn alt" href="https://www.italotreno.com" target="_blank" rel="noopener">Italo →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🌤️</div><div><h3>5월 말의 날씨</h3><span class="en">Weather</span></div></div>
+      <p>봄이 여름으로 넘어가는 가장 좋은 시기. 낮엔 반팔, 해 지면 살짝 쌀쌀합니다. 햇볕이 길고(하루 12시간+) <strong>자외선이 강하니</strong> 선글라스·선크림 필수.</p>
+      <div class="wgrid">
+        <div class="wbox"><div class="v">21~23°</div><div class="k">낮 최고</div></div>
+        <div class="wbox"><div class="v">13~15°</div><div class="k">밤 최저</div></div>
+        <div class="wbox"><div class="v">☀️ 맑음</div><div class="k">가끔 소나기</div></div>
+        <div class="wbox"><div class="v">~19°</div><div class="k">바닷물 온도</div></div>
+      </div>
+      <div class="callout"><div class="ct">☂️ 베네치아 변수</div><p>오후에 짧은 소나기가 지나갈 수 있어요. 우산보다 <strong>접이식 우비</strong>가 골목·다리 많은 본섬엔 더 편합니다.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">👗</div><div><h3>옷차림 가이드</h3><span class="en">What to Wear</span></div></div>
+      <p>온종일 걷고 다리를 수없이 오르내려요. 멋보다 <strong>발이 편한 신발</strong>이 진리. 돌·자갈길이 많아 하이힐은 비추천.</p>
+      <div class="chips">
+        <span class="chip">반팔 + 얇은 가디건</span>
+        <span class="chip">린넨 셔츠</span>
+        <span class="chip">편한 운동화·플랫</span>
+        <span class="chip">스카프(성당용)</span>
+        <span class="chip">선글라스</span>
+        <span class="chip">크로스백(소매치기 대비)</span>
+      </div>
+      <div class="callout"><div class="ct">⛪ 드레스 코드</div><p>산마르코 대성당 등은 <strong>어깨·무릎을 가려야</strong> 입장 가능. 얇은 스카프 하나면 사진도 예쁘고 입장도 OK.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🗝️</div><div><h3>도시의 룰 & 문화</h3><span class="en">Local Etiquette</span></div></div>
+      <ul class="list">
+        <li><b>다리·계단에 앉지 마세요</b> — 일부 구간은 벌금 대상. 광장 벤치나 카페 이용.</li>
+        <li><b>비둘기 먹이 금지</b> — 산마르코 광장에서 모이 주기는 금지.</li>
+        <li><b>물값은 무료</b> — 길거리 식수대(nasoni)에서 물을 받을 수 있어요. 텀블러 챙기면 이득.</li>
+        <li><b>식당 자릿세(coperto)</b> — 1인당 2~6유로가 정상. 바가지 아니에요.</li>
+        <li><b>'천천히'가 매너</b> — 좁은 골목·다리에선 사진 찍을 때 뒷사람 흐름을 살짝 비켜주기.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🗣️</div><div><h3>딱 5문장 이탈리아어</h3><span class="en">Survival Italian</span></div></div>
+      <div class="phrase"><div class="pl"><span class="it">Buongiorno</span><span class="pr">부온조르노</span></div><span class="ko">안녕하세요(낮)</span></div>
+      <div class="phrase"><div class="pl"><span class="it">Grazie</span><span class="pr">그라치에</span></div><span class="ko">감사합니다</span></div>
+      <div class="phrase"><div class="pl"><span class="it">Quanto costa?</span><span class="pr">콴토 코스타?</span></div><span class="ko">얼마예요?</span></div>
+      <div class="phrase"><div class="pl"><span class="it">Il conto, per favore</span><span class="pr">일 콘토 페르 파보레</span></div><span class="ko">계산서 주세요</span></div>
+      <div class="phrase"><div class="pl"><span class="it">A che ora l'ultimo autobus?</span><span class="pr">아 께 오라 룰티모 아우토부스?</span></div><span class="ko">막차(버스) 몇 시예요?</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 1일차 ============ -->
+  <section class="section" id="d1">
+    <div class="day-head">
+      <div class="day-tag">Day One</div>
+      <div class="day-title">도착 · 메스트레 적응 · 첫 야경</div>
+      <div class="day-desc">체크인 · 동네 파악 · 산마르코 야경</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🧳</div><div><h3>오늘의 흐름</h3><span class="en">Easy Start</span></div></div>
+      <p>첫날은 <strong>무리하지 않기</strong>가 핵심. 호텔에 짐 풀고 메스트레 동네를 파악한 뒤, 해 질 무렵 가볍게 본섬으로 들어가 첫 야경만 맛보고 옵니다.</p>
+      <div class="chips"><span class="chip">🏨 체크인</span><span class="chip">🛒 슈퍼 장보기</span><span class="chip">🌙 본섬 야경</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">📍</div><div><h3>추천 동선</h3><span class="en">Suggested Route</span></div></div>
+      <div class="tline">
+        <div class="tstep"><div class="time">Afternoon</div><div class="place">호텔 체크인 & 짐 정리</div><div class="note">메스트레역 바로 앞이라 도착 즉시 편하게 휴식. 시차·이동 피로를 먼저 풀어요.</div></div>
+        <div class="tstep"><div class="time">~ Early Eve</div><div class="place">메스트레 동네 파악</div><div class="note">근처 슈퍼마켓에서 생수·간식 사두기(본섬보다 훨씬 저렴). 차이나타운·식당가도 도보권.</div></div>
+        <div class="tstep"><div class="time">Sunset</div><div class="place">기차 타고 본섬 첫 진입</div><div class="note">산타루치아역을 나서는 순간 바로 대운하! 첫 인상을 노을과 함께 맞이해요.</div></div>
+        <div class="tstep"><div class="time">Night</div><div class="place">산마르코 광장 야경</div><div class="note">낮의 인파가 빠진 밤의 산마르코는 또 다른 분위기. 광장 카페의 라이브 연주도 운치 있어요.</div></div>
+        <div class="tstep"><div class="time">Late</div><div class="place">막차로 메스트레 복귀</div><div class="note">돌아오는 막차 시간만 미리 체크. 메스트레에서 가볍게 야식·와인으로 마무리.</div></div>
+      </div>
+      <div class="train"><div class="tt">🚌 오늘의 이동 (7일권)</div><div class="route"><span>Mestre</span><span class="ar">⇄</span><span>본섬</span></div><div class="meta">버스·트램 또는 기차 · 막차 시간 꼭 확인</div></div>
+    </div>
+  </section>
+
+  <!-- ============ 2일차 ============ -->
+  <section class="section" id="d2">
+    <div class="day-head">
+      <div class="day-tag">Day Two</div>
+      <div class="day-title">베네치아의 심장 속으로</div>
+      <div class="day-desc">산마르코 · 두칼레 · 리알토 · 대운하</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🌅</div><div><h3>오늘의 컨디션</h3><span class="en">Today's Vibe</span></div></div>
+      <p>본격적인 첫 풀데이. <strong>아침 일찍 기차를 타는 게 핵심</strong>이에요. 오전엔 인파·줄이 적어 산마르코 권역을 여유롭게 돌 수 있어요.</p>
+      <div class="chips"><span class="chip">☀️ 낮 22° 화창</span><span class="chip">👟 도보 위주</span><span class="chip">🎫 패스 활용</span></div>
+      <div class="train"><div class="tt">🚌 아침 출근 (7일권)</div><div class="route"><span>Mestre</span><span class="ar">→</span><span>본섬</span></div><div class="meta">버스·트램 또는 기차 · 8~9시 출발 추천</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">📍</div><div><h3>추천 동선</h3><span class="en">Suggested Route</span></div></div>
+      <div class="tline">
+        <div class="tstep"><div class="time">Morning</div><div class="place">산마르코 광장 & 대성당</div><div class="note">황금 모자이크가 빛나는 베네치아의 상징. 아침 일찍 가야 줄이 짧아요. (어깨·무릎 가리기)</div></div>
+        <div class="tstep"><div class="time">Late Morning</div><div class="place">두칼레 궁전 & 탄식의 다리</div><div class="note">공화국 권력의 중심. 다리에서 보는 운하 풍경이 시그니처 컷.</div></div>
+        <div class="tstep"><div class="time">Lunch</div><div class="place">치케티(Cicchetti) 점심</div><div class="note">바카로(bàcaro)에서 한 입 안주 + 와인 한 잔. 베네치아식 타파스를 서서 가볍게.</div></div>
+        <div class="tstep"><div class="time">Afternoon</div><div class="place">리알토 다리 & 시장</div><div class="note">대운하를 가로지르는 가장 유명한 다리. 근처 수산·청과 시장도 활기차요.</div></div>
+        <div class="tstep"><div class="time">Sunset</div><div class="place">바포레토 1번으로 대운하 일주</div><div class="note">1번 수상버스로 대운하를 천천히 통과하면 노을 진 궁전들이 줄지어 펼쳐집니다.</div></div>
+        <div class="tstep"><div class="time">Eve</div><div class="place">메스트레 복귀 · 저녁</div><div class="note">호텔 근처에서 가성비 좋은 저녁. 본섬 식비를 아낄 수 있는 메스트레의 매력.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🍝</div><div><h3>먹어볼 것</h3><span class="en">Taste of Venice</span></div></div>
+      <ul class="list">
+        <li><b>치케티</b> — 한 입 안주들. 바에 서서 와인이랑 즐기는 현지 문화.</li>
+        <li><b>스프리츠(Spritz)</b> — 베네치아가 고향인 식전주. 오후 햇살 + 운하 뷰에 최고.</li>
+        <li><b>먹물 파스타·리조토</b> — 갑오징어 먹물로 만든 베네토 명물.</li>
+        <li><b>젤라토</b> — 걷다 지칠 때 한 컵. 피스타치오 추천.</li>
+      </ul>
+      <div class="callout"><div class="ct">💡 벨라 팁</div><p>산마르코 광장 <strong>바로 앞 식당은 비싸요</strong>. 골목 한두 개만 더 들어가면 같은 음식이 절반 가격. 점심은 본섬, 저녁은 메스트레가 가성비 공식.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 3일차 ============ -->
+  <section class="section" id="d3">
+    <div class="day-head">
+      <div class="day-tag">Day Three</div>
+      <div class="day-title">색채의 섬으로 떠나기</div>
+      <div class="day-desc">무라노 · 부라노 · 라군</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">⛴️</div><div><h3>오늘의 컨디션</h3><span class="en">Island Hopping</span></div></div>
+      <p>본섬을 벗어나 <strong>라군의 작은 섬들</strong>로. 바포레토를 타고 물 위를 달리는 시간 자체가 여행이에요. 바람 있으니 얇은 겉옷 챙기기.</p>
+      <div class="chips"><span class="chip">🚤 수상버스 이동</span><span class="chip">🧥 바람막이</span><span class="chip">📷 인생샷 명소</span></div>
+      <div class="train"><div class="tt">🚌 아침 출근 (7일권)</div><div class="route"><span>Mestre</span><span class="ar">→</span><span>본섬</span><span class="ar">→</span><span>🚤섬</span></div><div class="meta">버스·트램/기차 후 폰다멘테노베에서 바포레토 (전부 패스 포함)</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">📍</div><div><h3>추천 동선</h3><span class="en">Suggested Route</span></div></div>
+      <div class="tline">
+        <div class="tstep"><div class="time">Morning</div><div class="place">무라노(Murano) 섬</div><div class="note">유리공예의 본고장. 장인이 유리를 부는 시연을 볼 수 있어요. 작은 기념품 사기 좋은 곳.</div></div>
+        <div class="tstep"><div class="time">Midday</div><div class="place">부라노(Burano) 섬</div><div class="note">알록달록 어부의 집들이 줄지어 선 동화 같은 섬. 베네치아 인생샷은 거의 여기서 나와요. 레이스 공예로도 유명.</div></div>
+        <div class="tstep"><div class="time">Lunch</div><div class="place">부라노 해산물 점심</div><div class="note">섬이라 신선한 해산물 리조토가 일품. 운하 옆 테라스 자리를 노려보세요.</div></div>
+        <div class="tstep"><div class="time">Afternoon</div><div class="place">(선택) 토르첼로 or 본섬 복귀</div><div class="note">조용한 토르첼로까지 둘러봐도 좋고, 일찍 본섬으로 돌아와 쉬어도 OK.</div></div>
+        <div class="tstep"><div class="time">Eve</div><div class="place">메스트레 복귀 · 휴식</div><div class="note">섬 호핑은 의외로 체력 소모가 커요. 저녁은 가볍게.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🚤</div><div><h3>섬 이동 꿀팁</h3><span class="en">Lagoon Tips</span></div></div>
+      <ul class="list">
+        <li><b>출발지</b> — 본섬 북쪽 <b>폰다멘테노베(Fondamente Nove)</b> 선착장에서 무라노·부라노행 바포레토 탑승.</li>
+        <li><b>패스로 무제한</b> — 벨라의 <b>7일권</b>이면 무라노·부라노행 바포레토가 전부 포함! 따로 표 안 사도 돼요.</li>
+        <li><b>아침 출발</b> — 부라노는 오후에 단체관광객이 몰려요. 오전이 한산하고 사진도 깨끗.</li>
+        <li><b>멀미 대비</b> — 라군은 잔잔하지만 바깥 자리는 바람·물보라 주의.</li>
+      </ul>
+      <div class="callout"><div class="ct">🎉 5월의 행운</div><p>혹시 <strong>5월 24일 보가롱가(Vogalonga)</strong>와 겹친다면 행운! 1,500척 넘는 전통 노 젓는 배가 라군을 도는 비경쟁 축제로, 모터 없는 베네치아 본래의 모습을 볼 수 있어요.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 4일차 ============ -->
+  <section class="section" id="d4">
+    <div class="day-head">
+      <div class="day-tag">Day Four</div>
+      <div class="day-title">감성 산책, 그리고 작별</div>
+      <div class="day-desc">카나레조 · 도르소두로 · 곤돌라 · 출발</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">🌿</div><div><h3>오늘의 컨디션</h3><span class="en">Slow Goodbye</span></div></div>
+      <p>마지막 날은 유명 명소보다 <strong>현지인의 동네</strong>를 천천히. 관광객 빠진 골목·운하에서 진짜 베네치아를 만나고, 오후엔 다음 여정으로 출발해요.</p>
+      <div class="chips"><span class="chip">🚶 골목 산책</span><span class="chip">🛶 곤돌라</span><span class="chip">🧳 출발 준비</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">📍</div><div><h3>추천 동선</h3><span class="en">Suggested Route</span></div></div>
+      <div class="tline">
+        <div class="tstep"><div class="time">Morning</div><div class="place">카나레조(Cannaregio) 골목</div><div class="note">관광 동선에서 살짝 벗어난 현지 동네. 빨래 널린 운하, 조용한 카페가 매력적. 유대인 게토 지구도 있어요.</div></div>
+        <div class="tstep"><div class="time">Late Morning</div><div class="place">도르소두로(Dorsoduro) 산책</div><div class="note">예술·청춘의 동네. 운하 옆에서 스프리츠 한 잔, 마지막 젤라토로 여유.</div></div>
+        <div class="tstep"><div class="time">Midday</div><div class="place">조용한 운하에서 곤돌라</div><div class="note">대운하보다 한적한 뒷골목 운하에서 타면 인파 없이 낭만적. 정찰 요금 미리 확인.</div></div>
+        <div class="tstep"><div class="time">Afternoon</div><div class="place">메스트레 복귀 · 체크아웃</div><div class="note">호텔에서 짐 찾고 정리. 역이 바로 앞이라 출발 직전까지 여유 있어요.</div></div>
+        <div class="tstep"><div class="time">Departure</div><div class="place">다음 여정으로</div><div class="note">메스트레역에서 기차로 이탈리아 전역 연결. 공항행은 버스·택시로 편하게.</div></div>
+      </div>
+      <div class="callout"><div class="ct">🧳 출발일 팁</div><p>호텔이 역 앞이라 <strong>체크아웃 후 짐 보관</strong> 부탁하고 마지막 반나절을 더 즐겨도 좋아요. 떠나기 직전 짐만 픽업해 바로 기차 탑승.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label"><div class="card-icon">✅</div><div><h3>떠나기 전 체크</h3><span class="en">Before You Leave</span></div></div>
+      <ul class="list">
+        <li><b>다음 행선지 기차표</b> — 메스트레역 출발편 미리 예매 & 좌석 확인.</li>
+        <li><b>면세·기념품</b> — 무라노 유리, 부라노 레이스 등 산 물건 잘 챙기기.</li>
+        <li><b>분실물</b> — 충전기·우비 등 호텔 객실 마지막 점검.</li>
+        <li><b>물·간식</b> — 다음 이동 구간용으로 슈퍼에서 미리 준비.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p class="q">"천천히 길을 잃어도 괜찮은 도시,<br>그게 베네치아예요."</p>
+    <div class="sig">BELLA · CRUISE NOMAD</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  var secs=document.querySelectorAll('.section');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      var id=t.getAttribute('data-tab');
+      tabs.forEach(function(x){x.classList.remove('active');});
+      secs.forEach(function(x){x.classList.remove('active');});
+      t.classList.add('active');
+      var target=document.getElementById(id);
+      if(target){target.classList.add('active');}
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
